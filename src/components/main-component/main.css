@@ -30,7 +30,8 @@
 }
 .main .greet span{
     background: -webkit-linear-gradient(16deg,#4b90ff,#ff5546);
-    -webkit-background-clip: text;
+    -webkit-background-clip : text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 
 }
@@ -47,6 +48,7 @@
     border-radius: 10px;
     position: relative;
     cursor: pointer;
+    transition: all 0.3s ease;
 
 }
 .main .card img{
@@ -64,7 +66,13 @@
     font-size: 17px;
 }
 .main .card:hover{
-   background-color: #dfe4ed; 
+   background-color: #dfe4ed;
+   transform: translateY(-5px);  /* ADD THIS - lifts card on hover */
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+}
+.main .card:active{  /* ADD THIS - feedback when clicked */
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 .main .main-bottom{
     position: absolute;
@@ -159,21 +167,86 @@
     font-weight: 300;
     line-height: 1.8;
 }
-
 @media(max-width:600px){
-    .main-bottom input{
-        flex: none;
-        width: 15px;
-    }
-     .main-bottom img{
-        width:20px ;
-
-     }
-     .search-box{
-         padding: 5px 10px;
-     }
-     .search-box dev{
-        gap: 5px;
-     }
-
+  /* Fix main container padding */
+  .main{
+    padding-bottom: 20vh;
+  }
+  
+  /* Make greeting text smaller */
+  .main .greet{
+    font-size: 32px;
+    margin: 30px 0px;
+    padding: 10px;
+  }
+  
+  /* Make cards responsive */
+  .main .cards{
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .main .card{
+    height: auto;  /* Let content determine height */
+    min-height: 80px;
+    padding: 12px;
+  }
+  
+  .main .card p{
+    font-size: 13px;
+    padding-right: 40px;
+  }
+  .main .card img{
+    width: 28px;
+  }
+  @media(min-width:400px) and (max-width:600px){
+  .main .cards{
+    grid-template-columns: repeat(2, 1fr);  /* 2 cards per row */
+  }
 }
+  
+  /* Fix navigation */
+  .main .nav{
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .main .nav img{
+    width: 30px;
+  }
+  
+  /* Fix the search box - CRITICAL FIX */
+  .search-box{
+    padding: 8px 15px;
+    gap: 10px;
+  }
+  
+  .search-box input{
+    flex: 1;  /* ✅ FIXED: Now input takes available space */
+    font-size: 16px;  /* Prevents zoom on iOS */
+    min-width: 0;  /* Allows input to shrink */
+  }
+  
+  .main-bottom img{
+    width: 20px;
+  }
+  
+  .search-box div{  /* ✅ FIXED: Was "dev" typo */
+    gap: 8px;
+  }
+  
+  /* Make result text readable */
+  .result-data p{
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  /* Adjust bottom positioning */
+  .main .main-bottom{
+    padding: 0px 10px;
+  }
+}
+
+
+
