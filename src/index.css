@@ -5,6 +5,11 @@
   box-sizing: border-box;
   font-family: outfit;
 }
+html, body {
+  overflow-x: hidden;  /* Prevents horizontal scroll */
+  width: 100%;
+  position: relative;
+}
 #root{
   min-height: 100vh;
   display: flex;
